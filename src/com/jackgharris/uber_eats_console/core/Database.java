@@ -84,8 +84,7 @@ public class Database {
                 HashMap<String, String> entry = new HashMap<String, String>();
 
                 int i = 1;
-                while(i < columns){
-
+                while(i <= columns){
                     entry.put(result.getMetaData().getColumnLabel(i),result.getString(i));
                     i++;
                 }

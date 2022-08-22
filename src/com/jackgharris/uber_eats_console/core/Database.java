@@ -73,7 +73,7 @@ public class Database {
                 int i = 1;
                 while(i < columns){
 
-                    entry.put(result.getMetaData().getColumnLabel(i),result.getString(1));
+                    entry.put(result.getMetaData().getColumnLabel(i),result.getString(i));
                     i++;
                 }
 

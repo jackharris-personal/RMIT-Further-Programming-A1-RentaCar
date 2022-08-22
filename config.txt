@@ -1,6 +1,10 @@
-//**** DATABASE CONFIG ****\\
-//Please fill in the database details to match the current server
-DB_HOST=127.0.0.1
-DB_NAME=db_test
-DB_USER=root
-DB_PASSWORD=
+//**** ---------- DATABASE CONFIG  ---------- ****\\
+//MySQL server connection settings
+DB_DRIVER=mysql
+SQL_HOST=127.0.0.1
+SQL_PORT=3306
+SQL_NAME=phs
+SQL_USER=root
+SQL_PASSWORD=
+//SQL lite connection settings
+SQLITE_FILE=

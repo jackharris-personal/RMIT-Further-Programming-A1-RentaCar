@@ -1,5 +1,6 @@
 package com.jackgharris.uber_eats_console.core;
 
+import com.jackgharris.uber_eats_console.models.Restaurant;
 import com.jackgharris.uber_eats_console.services.FileService;
 
 import java.util.ArrayList;
@@ -8,11 +9,8 @@ import java.util.List;
 
 public class Application {
 
-    private static Application instance;
-
     private String directory;
     private HashMap<String, String> config;
-    private String logo;
 
     public Application(){
 
@@ -30,32 +28,20 @@ public class Application {
                 details.add(this.config.get("SQL_USER"));
                 details.add(this.config.get("SQL_PASS"));
 
-                Database.boot("mysql", details);
-
             } case "sqlite" -> {
-
                 details.add(this.config.get("SQLITE_FILE"));
-                Database.boot("sqlite", details);
-
             }
         }
 
-        Database.instance().test();
+        Database.boot(this.config.get("DB_DRIVER"), details);
 
+        Restaurant[] restaurants = Restaurant.all();
 
-
+        int i = 0;
+        while(i < restaurants.length){
+            System.out.println(restaurants[i].getName());
+            i++;
+        }
     }
 
-
-    public static Application instance() {
-        return instance;
-    }
-
-    public static void boot(){
-        instance = new Application();
-    }
-
-    public String getConfig(String key){
-        return this.config.get(key);
-    }
 }

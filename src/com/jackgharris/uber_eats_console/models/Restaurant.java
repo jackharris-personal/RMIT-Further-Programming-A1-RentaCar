@@ -28,9 +28,31 @@ public class Restaurant extends Model {
         return this.data.get("address");
     }
 
+
+
     public static Restaurant[] all(){
         List<HashMap<String, String>> result = Database.query("SELECT * FROM restaurants");
 
+        return buildRestaurantObjects(result);
+    }
+
+    public static Restaurant[] all(int limit){
+        List<HashMap<String, String>> result = Database.query("SELECT * FROM restaurants LIMIT "+limit);
+
+        return buildRestaurantObjects(result);
+    }
+
+    public static Restaurant[] allWhere(String column, String value){
+        List<HashMap<String, String>> result = Database.query("SELECT * FROM restaurants WHERE "+column+" = "+"'"+value+"'");
+        return buildRestaurantObjects(result);
+    }
+
+    public static Restaurant getWhere(String column, String value){
+        List<HashMap<String, String>> result = Database.query("SELECT * FROM restaurants WHERE "+column+" = "+"'"+value+"' LIMIT 1");
+        return buildRestaurantObjects(result)[0];
+    }
+
+    private static Restaurant[] buildRestaurantObjects(List<HashMap<String, String>> result) {
         Restaurant[] restaurants = new Restaurant[result.size()];
 
 

@@ -50,17 +50,30 @@ public class Database {
         //check if the driver class is loaded
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
+
         }catch (ClassNotFoundException exception){
             exception.printStackTrace();
         }
 
         List<HashMap<String, String>> data =  new ArrayList<>();
 
-
         //check for SQL connection error
         try{
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://"+Database.instance.host+":3306/"+Database.instance.name, Database.instance.user,Database.instance.password);
+            String url = "";
+            Connection con = null;
+
+            switch (Database.instance.driver) {
+                case "mysql" -> {
+                    url = Database.instance.host+":"+Database.instance.port+"/"+Database.instance.name;
+                    con = DriverManager.getConnection("jdbc:"+Database.instance.driver+"://"+url,Database.instance.user,Database.instance.password);
+                }
+                case "sqlite" -> {
+                    url = Database.instance.file;
+                    con = DriverManager.getConnection("jdbc:"+Database.instance.driver+"://"+Database.instance.file);
+                }
+            }
+
             Statement statement = con.createStatement();
             ResultSet result = statement.executeQuery(query);
 

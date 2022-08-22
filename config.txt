@@ -1,9 +1,8 @@
-//**** ---------- DATABASE CONFIG  ---------- ****\\
-//MySQL server connection settings
+//---------------- Database Configuration ----------------\\
 DB_DRIVER=mysql
 SQL_HOST=127.0.0.1
 SQL_PORT=3306
-SQL_NAME=phs
+SQL_NAME=furtherprog_a1
 SQL_USER=root
 SQL_PASSWORD=
 //SQL lite connection settings

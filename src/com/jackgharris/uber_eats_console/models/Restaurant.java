@@ -52,7 +52,7 @@ public class Restaurant extends Model {
         return buildRestaurantObjects(result)[0];
     }
 
-    private static Restaurant[] buildRestaurantObjects(List<HashMap<String, String>> result) {
+    public static Restaurant[] buildRestaurantObjects(List<HashMap<String, String>> result) {
         Restaurant[] restaurants = new Restaurant[result.size()];
 
 

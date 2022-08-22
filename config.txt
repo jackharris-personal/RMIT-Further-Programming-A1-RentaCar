@@ -1,0 +1,6 @@
+//**** DATABASE CONFIG ****\\
+//Please fill in the database details to match the current server
+DB_HOST=127.0.0.1
+DB_NAME=db_test
+DB_USER=root
+DB_PASSWORD=

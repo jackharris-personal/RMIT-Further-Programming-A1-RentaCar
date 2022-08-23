@@ -8,40 +8,25 @@ import java.util.List;
 public class Database {
 
     private static Database instance;
-    private String driver;
-    private String host;
-    private int port;
-    private String name;
-    private String user;
-    private String password;
-    private String file;
+    private final String driver;
+    private final String host;
+    private final int port;
+    private final String name;
+    private final String user;
+    private final String password;
+    private final String file;
 
 
-    public Database(String driver, List<String> connectionDetails){
+    public Database(String driver, HashMap<String, String> config){
 
         this.driver = driver;
 
-        switch (driver) {
-            case "mysql" -> {
-
-                this.host = connectionDetails.get(0);
-                this.port = Integer.parseInt(connectionDetails.get(1));
-                this.name = connectionDetails.get(2);
-                this.user = connectionDetails.get(3);
-                this.password = connectionDetails.get(4);
-                this.file = "";
-
-            } case "sqlite" -> {
-
-                this.host = "";
-                this.port = 0;
-                this.name = null;
-                this.user = "";
-                this.password = "";
-                this.file = connectionDetails.get(0);
-
-            }
-        }
+        this.host = config.get("SQL_HOST");
+        this.port = Integer.parseInt(config.get("SQL_PORT"));
+        this.name = config.get("SQL_NAME");
+        this.user = config.get("SQL_USER");
+        this.password = config.get("SQL_PASSWORD");
+        this.file = config.get("SQLITE_FILE");
 
     }
 
@@ -100,8 +85,8 @@ public class Database {
 
     }
 
-    public static void boot(String driver, List<String> connectionDetails){
-        Database.instance = new Database(driver, connectionDetails);
+    public static void boot(String driver, HashMap<String, String> config){
+        Database.instance = new Database(driver, config);
     }
 
     public static Database instance(){

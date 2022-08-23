@@ -32,14 +32,6 @@ public class Database {
 
     public static List<HashMap<String, String>> query(String query){
 
-        //check if the driver class is loaded
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-        }catch (ClassNotFoundException exception){
-            exception.printStackTrace();
-        }
-
         List<HashMap<String, String>> data =  new ArrayList<>();
 
         //check for SQL connection error
@@ -61,6 +53,7 @@ public class Database {
 
             Statement statement = con.createStatement();
             ResultSet result = statement.executeQuery(query);
+
 
             int columns  = result.getMetaData().getColumnCount();
 

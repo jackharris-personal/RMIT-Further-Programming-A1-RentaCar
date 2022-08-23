@@ -48,11 +48,11 @@ public class Restaurant extends Model {
     }
 
     public static Restaurant getWhere(String column, String value){
-        List<HashMap<String, String>> result = Database.query("SELECT * FROM restaurants WHERE "+column+" = "+"'"+value+"' LIMIT 1");
+        List<HashMap<String, String>> result = Database.query("SELECT * FROM restaurants WHERE "+column+"="+"'"+value+"' LIMIT 1");
         return buildRestaurantObjects(result)[0];
     }
 
-    public static Restaurant[] buildRestaurantObjects(List<HashMap<String, String>> result) {
+    private static Restaurant[] buildRestaurantObjects(List<HashMap<String, String>> result) {
         Restaurant[] restaurants = new Restaurant[result.size()];
 
 

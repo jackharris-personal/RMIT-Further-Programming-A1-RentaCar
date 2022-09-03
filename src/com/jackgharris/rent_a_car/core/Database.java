@@ -1,4 +1,4 @@
-package com.jackgharris.uber_eats_console.core;
+package com.jackgharris.rent_a_car.core;
 
 import java.sql.*;
 import java.util.ArrayList;

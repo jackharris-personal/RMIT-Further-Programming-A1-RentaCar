@@ -1,7 +1,7 @@
-package com.jackgharris.uber_eats_console.models;
+package com.jackgharris.rent_a_car.models;
 
-import com.jackgharris.uber_eats_console.core.Database;
-import com.jackgharris.uber_eats_console.core.Model;
+import com.jackgharris.rent_a_car.core.Database;
+import com.jackgharris.rent_a_car.core.Model;
 
 import java.util.HashMap;
 import java.util.List;

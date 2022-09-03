@@ -1,4 +1,4 @@
-package com.jackgharris.uber_eats_console.core;
+package com.jackgharris.rent_a_car.core;
 
 public class Launcher {
 

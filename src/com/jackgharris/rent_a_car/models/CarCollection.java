@@ -4,7 +4,7 @@ package com.jackgharris.rent_a_car.models;
 
 //**** PACKAGE IMPORTS ****\\
 //This section shows us the list of Java Packages used in this package.
-import com.jackgharris.rent_a_car.core.Sort;
+import com.jackgharris.rent_a_car.enums.Sort;
 
 import java.util.ArrayList;
 

@@ -126,7 +126,7 @@ public class CarCollection {
     //**** GET ALL METHOD ****\\
     //This method returns the full array of cars for this CarCollection object, this can
     //be unrefined or a chained behind many where statements.
-    public Car[] getAll(){
+    public Car[] get(){
         return this.cars;
     }
 

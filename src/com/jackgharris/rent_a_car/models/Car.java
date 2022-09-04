@@ -59,8 +59,8 @@ public class Car extends Model {
         return new CarCollection(Car.cars).where(key,value);
     }
 
-    public static Car[] getAll(){
-        return new CarCollection(Car.cars).getAll();
+    public static Car[] get(){
+        return new CarCollection(Car.cars).get();
     }
 
     public static CarCollection orderBy(String key, Sort orderType){

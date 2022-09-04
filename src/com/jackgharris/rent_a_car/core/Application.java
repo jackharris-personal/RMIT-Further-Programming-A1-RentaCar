@@ -1,28 +1,24 @@
 package com.jackgharris.rent_a_car.core;
 
-import com.jackgharris.rent_a_car.models.Category;
-import com.jackgharris.rent_a_car.models.Restaurant;
+import com.jackgharris.rent_a_car.enums.Sort;
+import com.jackgharris.rent_a_car.models.Car;
 import com.jackgharris.rent_a_car.services.FileService;
 
-import java.util.HashMap;
 
 public class Application {
 
-    private String directory;
-    private HashMap<String, String> config;
-
     public Application(){
 
-        this.directory = System.getProperty("user.dir");
-        this.config = FileService.loadConfig(this.directory+"/config.txt");
+        String directory = System.getProperty("user.dir");
+        Car.bindModelData(FileService.loadCarModels(directory+"/fleet.csv"));
 
-        Database.boot(this.config.get("DB_DRIVER"), this.config);
 
-        //category load testing
-        Restaurant[] restaurants = Category.getRestaurantsWhere("Fast Food");
 
-        for (Restaurant restaurant : restaurants) {
-            System.out.println(restaurant.getName());
+
+        Car[] cars = Car.orderBy("Year of Manufacture", Sort.DESCENDING).get();
+
+        for (Car car: cars) {
+            System.out.println("CarAttributes: "+car.getBrand()+" "+car.getModel()+" Year of Manufacture: "+car.getYearOfManufacture());
         }
 
     }

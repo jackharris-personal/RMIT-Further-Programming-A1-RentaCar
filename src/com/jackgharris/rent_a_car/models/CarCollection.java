@@ -4,6 +4,8 @@ package com.jackgharris.rent_a_car.models;
 
 //**** PACKAGE IMPORTS ****\\
 //This section shows us the list of Java Packages used in this package.
+import com.jackgharris.rent_a_car.core.Sort;
+
 import java.util.ArrayList;
 
 public class CarCollection {
@@ -60,9 +62,64 @@ public class CarCollection {
     }
 
     //**** ORDER BY METHOD ****\\
-    //This method will order the results by a specific car data's value
-    //TODO implement this later
-    public CarCollection orderBy(String key){
+    //This method will order the results by a specific car data's value, the method for performing
+    //this was created by ritikasharma23 in a website post on GeeksForGeeks, all credit to him for
+    //creating this sorting method, referenced code indicated by START and END block.
+    //this method has been heavily edited by me to fit the required use case of this project.
+    //
+    //-------------------------  Code Bibliography Reference -------------------------
+    //
+    //Java Program to Sort Names in an Alphabetical Order - GeeksforGeeks. ritikasharma23.
+    //Retrieved 4 September 2022, from https://www.geeksforgeeks.org/java-program-to-sort-names-in-an-alphabetical-order/.
+    //
+    //--------------------------------------------------------------------------------
+    public CarCollection orderBy(String key, Sort orderType){
+
+        //START - Referenced Code Block
+
+        //create our temp car variable, this is used to store the object we are moving
+        Car temp;
+
+        //next we create two for loops to check the current car and the one ahead, our second loop j is equal
+        //to the value of i+1
+        for (int i = 0; i < this.cars.length; i++) {
+            for (int j = i + 1; j < this.cars.length; j++) {
+
+                //next we perform a switch statement on the sort type to see if we are
+                //sorting this by accenting or descending value.
+                switch (orderType){
+                    case ASCENDING:
+
+                        //next we compare the current car to the next car and if it's less than zero then we move
+                        // its position on the list
+                        if (this.cars[i].getDataValue(key).compareTo(this.cars[j].getDataValue(key)) > 0) {
+                            //set the current temp value to this car, next set the new car value and then
+                            //place the temp car back into the array
+                            temp = this.cars[i];
+                            this.cars[i] = this.cars[j];
+                            this.cars[j] = temp;
+                        }
+                        break;
+
+                    //Sort by descending option
+                    case DESCENDING:
+                        //next we compare the current car to the next car and if it's less than zero then we move
+                        // its position on the list
+                        if (this.cars[i].getDataValue(key).compareTo(this.cars[j].getDataValue(key)) < 0) {
+                            //set the current temp value to this car, next set the new car value and then
+                            //place the temp car back into the array
+                            temp = this.cars[i];
+                            this.cars[i] = this.cars[j];
+                            this.cars[j] = temp;
+                        }
+                        break;
+                }
+
+            }
+        }
+        //END - Referenced Code Block
+
+        //finally we return this CarCollection object back to the caller.
         return this;
     }
 

@@ -1,16 +1,14 @@
-//**** PACKAGE IMPORTS ****\\
-//This is the Java package that the class is associated with.
+//**** PACKAGE****\\
 package com.jackgharris.rent_a_car.models;
 
 //**** PACKAGE IMPORTS ****\\
 //This section shows us the list of Java Packages used in this package.
 import com.jackgharris.rent_a_car.enums.Sort;
-
 import java.util.ArrayList;
 
 public class CarCollection {
 
-    //**** CLASS CONSTRUCTOR ****\\
+    //**** PRIVATE VARS ****\\
     //Our only private variables is the cars array of models, this is provided
     //as part of the class constructor and is refined during our chainable query's.
     private Car[] cars;

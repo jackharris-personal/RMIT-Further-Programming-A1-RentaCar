@@ -10,4 +10,8 @@ public abstract class Model {
         this.data = data;
     }
 
+    public String getDataValue(String key){
+        return data.get(key);
+    }
+
 }

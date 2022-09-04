@@ -1,13 +1,14 @@
 package com.jackgharris.rent_a_car.models;
 
 import com.jackgharris.rent_a_car.core.Model;
+import com.jackgharris.rent_a_car.enums.Sort;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Car extends Model {
 
-    private static Car[] models;
+    private static Car[] cars;
 
     public Car(HashMap<String, String> data) {
         super(data);
@@ -49,18 +50,26 @@ public class Car extends Model {
         return Integer.parseInt(this.data.get("Discount"));
     }
 
+    public int getSeatCount(){
+        return Integer.parseInt(this.data.get("No. of seats"));
+    }
+
 
     public static CarCollection where(String key, String value){
-        return new CarCollection(Car.models).where(key,value);
+        return new CarCollection(Car.cars).where(key,value);
     }
 
     public static Car[] getAll(){
-        return new CarCollection(Car.models).getAll();
+        return new CarCollection(Car.cars).getAll();
+    }
+
+    public static CarCollection orderBy(String key, Sort orderType){
+        return new CarCollection(Car.cars).orderBy(key, orderType);
     }
 
 
     public static void bindModelData(ArrayList<HashMap<String, String>> models){
-        Car.models = Car.buildCarModels(models);
+        Car.cars = Car.buildCarModels(models);
     }
 
     private static Car[] buildCarModels(ArrayList<HashMap<String, String>> result) {

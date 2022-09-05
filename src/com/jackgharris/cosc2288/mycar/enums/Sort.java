@@ -1,6 +1,6 @@
 //**** PACKAGE ****\\
 //Set the specific package for this class file
-package com.jackgharris.rent_a_car.enums;
+package com.jackgharris.cosc2288.mycar.enums;
 
 //**** CREATE ENUM ****\\
 //Create our public emun, in this case we call it sort and have two options

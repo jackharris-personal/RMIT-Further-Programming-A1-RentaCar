@@ -1,9 +1,9 @@
 //**** PACKAGE****\\
-package com.jackgharris.rent_a_car.models;
+package com.jackgharris.cosc2288.mycar.models;
 
 //**** PACKAGE IMPORTS ****\\
 //This section shows us the list of Java Packages used in this package.
-import com.jackgharris.rent_a_car.enums.Sort;
+import com.jackgharris.cosc2288.mycar.enums.Sort;
 import java.util.ArrayList;
 
 public class CarCollection {

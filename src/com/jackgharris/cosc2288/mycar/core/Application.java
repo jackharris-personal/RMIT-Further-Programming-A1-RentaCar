@@ -1,8 +1,8 @@
-package com.jackgharris.rent_a_car.core;
+package com.jackgharris.cosc2288.mycar.core;
 
-import com.jackgharris.rent_a_car.enums.Sort;
-import com.jackgharris.rent_a_car.models.Car;
-import com.jackgharris.rent_a_car.services.FileService;
+import com.jackgharris.cosc2288.mycar.enums.Sort;
+import com.jackgharris.cosc2288.mycar.models.Car;
+import com.jackgharris.cosc2288.mycar.services.FileService;
 
 
 public class Application {

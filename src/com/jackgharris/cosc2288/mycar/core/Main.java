@@ -1,7 +1,7 @@
 //**** PACKAGE****\\
 //This specifics what package this specific class this Main.java class
 //is a part of.
-package com.jackgharris.rent_a_car.core;
+package com.jackgharris.cosc2288.mycar.core;
 
 public class Main {
 

@@ -136,6 +136,31 @@ public class CarCollection {
     }
 
 
+    //**** GET UNIQUE VALUES WHERE KEY ****\\
+    //This method accepts a key and returns all the unique values were the key matches the one provided.
+    //These returned values will always be String and can be later converted into other types by the caller
+    //Example: Integer.parseint()
+
+    public String[] getUniqueValuesWhereKey(String key){
+
+        //create our array list of new unique values
+        ArrayList<String> values = new ArrayList<>();
+
+        //for each car inside our collection of cars we perform this check
+        for (Car car : this.cars) {
+
+            //if the value is currently not inside the list of values then we add it
+            if(!values.contains(car.getDataValue(key))){
+                //else we skip it
+                values.add(car.getDataValue(key));
+            }
+        }
+
+        //return our list of values as a fixed size array of strings.
+        return values.toArray(String[]::new);
+    }
+
+
 }
 
 

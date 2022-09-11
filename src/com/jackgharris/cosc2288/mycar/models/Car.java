@@ -93,6 +93,7 @@ public class Car extends Model {
 
 
     //-------------------------  CAR COLLECTION FACADES -------------------------\\
+    //                             (STATIC GETTERS)
 
     //The following static methods are a facade to create and return a CarCollection class
     //any one of these methods can be called, and they will then themselves build a CarCollection
@@ -120,6 +121,10 @@ public class Car extends Model {
     public static CarCollection orderBy(String key, Sort orderType){
         return new CarCollection(Car.cars).orderBy(key, orderType);
     }
+
+    //**** GET UNIQUE VALUES WHERE KEY ****\\
+    //This static facade returns the carCollection result of this method as an array of strings.
+    public static String[] getUniqueValuesWhereKey(String key){return new CarCollection(Car.cars).getUniqueValuesWhereKey(key);}
 
     //-------------------------  STATIC METHODS -------------------------\\
 

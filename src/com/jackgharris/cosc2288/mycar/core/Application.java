@@ -21,11 +21,11 @@ public class Application {
 
         this.controllers = new HashMap<>();
 
-        this.controllers.put("Menu", new MenuController(this));
-        this.controllers.put("Search", new SearchController(this));
-        this.controllers.put("Reservation", new ReservationController(this));
+        this.controllers.put("MenuController", new MenuController(this));
+        this.controllers.put("SearchController", new SearchController(this));
+        this.controllers.put("ReservationController", new ReservationController(this));
 
-        this.activeController = "Menu";
+        this.activeController = "MenuController";
 
         this.updateView(new Response());
     }

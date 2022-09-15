@@ -6,7 +6,13 @@ package com.jackgharris.cosc2288.mycar.enums;
 //Create our public emun, in this case we call it sort and have two options
 //"Ascending" & "Descending" this makes it easy for the CarCollection to be
 //locked to one of the two input options.
+
+//16/09/2022 | Added Greater than and less than to the sort enum, these are used
+//inside our new getWhereSeats helper facade method to determine if we want seats
+//greater or less than the integer provided.
 public enum Sort {
     DESCENDING,
-    ASCENDING
+    ASCENDING,
+    GREATER_THAN,
+    LESS_THAN
 }

@@ -14,4 +14,8 @@ public class Ascii {
     //**** STATIC FINAL BLACK VARIABLE***
     //contains the standard black font.
     public static final String black = "\u001B[0m";
+
+    //**** STATIC FINAL BLACK VARIABLE***
+    //contains the green font styling.
+    public static final String green = "\u001B[32m";
 }

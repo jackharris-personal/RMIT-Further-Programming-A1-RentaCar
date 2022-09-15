@@ -59,7 +59,7 @@ public class MenuController extends Controller {
                     //case 2 is filter by car type, if selected we set the view redirect and then set the
                     //active controller to Search Controller
                     case 2 -> {
-                        response.setViewRedirect("type");
+                        response.setViewRedirect("typeMenu");
                         this.app.setActiveController("SearchController");
                     }
 

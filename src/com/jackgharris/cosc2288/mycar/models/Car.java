@@ -126,6 +126,26 @@ public class Car extends Model {
     //This static facade returns the carCollection result of this method as an array of strings.
     public static String[] getUniqueValuesWhereKey(String key){return new CarCollection(Car.cars).getUniqueValuesWhereKey(key);}
 
+    //**** IS VALID BRAND ****\\
+    //Returns true or false depending on if the provided brand is a valid brand type existing in our getUniqueValuesWhereKey Response
+    public static boolean isValidBrand(String key){
+
+        //set our default outcome to false
+        boolean outcome = false;
+
+        //loop over all our unique values for brand
+        for (String brand: Car.getUniqueValuesWhereKey("Brand")) {
+            //if the key matches we break the loop and set the outcome to true
+            if(brand.matches(key)){
+                outcome = true;
+                break;
+            }
+        }
+
+        //lastly we return the outcome.
+        return outcome;
+    }
+
     //-------------------------  STATIC METHODS -------------------------\\
 
     //**** BIND MODEl DATA METHOD ****\\

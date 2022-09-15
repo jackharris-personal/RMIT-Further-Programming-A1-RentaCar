@@ -14,8 +14,8 @@ import com.jackgharris.cosc2288.mycar.views.SearchView;
 public class SearchController extends Controller {
 
     //**** CONSTRUCTOR ****\\
-    //This controller accepts a instance of the Application that is passes to its parent via super
-    //it then sets the view to a instance of our search view and then sets a default current view.
+    //This controller accepts an instance of the Application that is passes to its parent via super
+    //it then sets the view to an instance of our search view and then sets a default current view.
     public SearchController(Application app) {
         super(app);
         this.view = new SearchView();
@@ -125,7 +125,7 @@ public class SearchController extends Controller {
 
         //When selecting a brand you can type the brand or enter the specific number
         //than shown in the view, first lets process the number selection this is one
-        //via our request.isInteger boolean method to determine if the input was a integer
+        //via our request.isInteger boolean method to determine if the input was an integer
         //or a string.
         if(request.isInteger()){
 
@@ -141,7 +141,7 @@ public class SearchController extends Controller {
                 return response;
             }
 
-            //Next if check is the entered value was a integer that is more than 0 and less than our
+            //Next if check is the entered value was an integer that is more than 0 and less than our
             //final option 'back to main menu', if so we set the brand to that brands value remembering
             //that we added one so that is removed here, followed by setting the searchOutcome boolean
             //to true.
@@ -318,7 +318,7 @@ public class SearchController extends Controller {
 
             //Next we check to see if the user has selected to go back to the main menu
             //checking our options variable, if they have then we set the active controller
-            //to the MenuController and then return the reponse to stop processing any more logic
+            //to the MenuController and then return the response to stop processing any more logic
             //in this method.
             if(request.getUserInputAsInteger() == (int)request.get("options")){
                 this.app.setActiveController("MenuController");
@@ -331,13 +331,13 @@ public class SearchController extends Controller {
                 response.setNotification("Valid Car Selected! - Pending Booking Implementation", Ascii.green);
                 //TODO ADD CAR BOOKING LINK
             }else{
-                //Else we set a response for a invalid selection.
+                //Else we set a response for an invalid selection.
                 response.setError("invalid menu selection '"+request.getUserInputAsInteger()+"', please enter a valid selection\nFrom 1-"+request.get("options"));
             }
 
         }
 
-        //Finally our processing is done and we return the reponse.
+        //Finally our processing is done, and we return the response.
         return response;
     }
 }

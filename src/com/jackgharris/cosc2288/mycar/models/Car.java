@@ -146,6 +146,45 @@ public class Car extends Model {
         return outcome;
     }
 
+    //**** GET WHERE SEATS ****\\
+    //This method accepts an integer and a sorting type and will return a carCollection were the
+    //seats are either less than or greater than the number provided.
+    public static CarCollection getWhereSeats(int number, Sort greaterOrLess){
+
+        //create our selected cars array list.
+        ArrayList<Car> selectedCars = new ArrayList<>();
+
+        //Process the greater than or less than logic based on the sort
+        //type enum provided.
+        switch (greaterOrLess)
+        {
+            case GREATER_THAN -> {
+                //search the cars and add the cars to the new array if they match
+                for (Car car: Car.get()) {
+                    if(car.getSeatCount() > number){
+                        selectedCars.add(car);
+                    }
+                }
+            }
+            case LESS_THAN -> {
+                //search the cars and add the cars to the new array if they match
+                for (Car car: Car.get()) {
+                    if(car.getSeatCount() < number){
+                        selectedCars.add(car);
+                    }
+                }
+            }
+
+        }
+
+        //Convert the array list to a fixed array
+        Car[] rawArray = new Car[selectedCars.size()];
+        rawArray = selectedCars.toArray(rawArray);
+
+        //Return a new CarCollection object and give it the array list just created.
+        return new CarCollection(rawArray);
+    }
+
     //-------------------------  STATIC METHODS -------------------------\\
 
     //**** BIND MODEl DATA METHOD ****\\

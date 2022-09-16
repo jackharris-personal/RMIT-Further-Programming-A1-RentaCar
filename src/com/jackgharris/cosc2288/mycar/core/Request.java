@@ -1,5 +1,8 @@
 package com.jackgharris.cosc2288.mycar.core;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 public class Request {
@@ -40,6 +43,10 @@ public class Request {
         return this.data.get(key);
     }
 
+    public boolean containsData(String key){
+        return this.data.containsKey(key);
+    }
+
     public void setError(String error) {
         this.error = error;
     }
@@ -67,6 +74,36 @@ public class Request {
         }
 
         return outcome;
+    }
+
+    //**** IS DATE METHOD ****\\
+    //This method will return true or false to let the caller know if the user input
+    //was a valid date or not, credit to C Parakash for providing his article on working
+    //out how to test for a valid date input.
+    //
+    //-------------------------  Code Bibliography Reference -------------------------
+    //
+    // Prakash, C. (2021). Check If a String Is a Valid Date in Java. baeldung.com.
+    // Retrieved 16 September 2022, from https://www.baeldung.com/java-string-valid-date.
+    //
+    //--------------------------------------------------------------------------------
+
+    public boolean isDate(){
+        boolean validDate = true;
+
+        //START REFERENCED CODE BLOCK
+        DateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        simpleDateFormat.setLenient(false);
+
+        try{
+            simpleDateFormat.parse(this.getUserInput());
+        } catch (ParseException e) {
+            validDate = false;
+        }
+
+        //END REFERENCED CODE BLOCK
+
+        return validDate;
     }
 
     public HashMap<String, Object> getData(){

@@ -82,13 +82,31 @@ public class Car extends Model {
     //**** GET DISCOUNT METHOD ****\\
     //Returns the vehicle discount percentage to the caller as an integer.
     public int getDiscount(){
-        return Integer.parseInt(this.data.get("Discount"));
+        boolean outcome = true;
+        int discount = 0;
+        try{
+            int result = Integer.parseInt(this.data.get("Discount"));
+        }catch (NumberFormatException e){
+            outcome = false;
+        }
+
+        if(outcome){
+            discount = Integer.parseInt(this.data.get("Discount"));
+        }
+
+        return discount;
     }
 
     //**** GET SEAT COUNT METHOD ****\\
     //Returns the vehicle seat count to the caller as an integer.
     public int getSeatCount(){
         return Integer.parseInt(this.data.get("No. of seats"));
+    }
+
+    //**** GET INSURANCE PER DAY ****\\
+    //Returns the vehicle insurance cost per day.
+    public int getInsurancePerDay(){
+        return Integer.parseInt(this.data.get("Insurance per day (AUD)"));
     }
 
 

@@ -328,8 +328,17 @@ public class SearchController extends Controller {
             //Next we can check if the input is less than our options limit but greater than 0, if we set the selected car
             //and start the booking process
             if(request.getUserInputAsInteger() > 0 && request.getUserInputAsInteger() < (int)request.get("options")){
-                response.setNotification("Valid Car Selected! - Pending Booking Implementation", Ascii.green);
-                //TODO ADD CAR BOOKING LINK
+
+                Car car = ((Car[])request.get("cars"))[request.getUserInputAsInteger()-1];
+                //Add all our response data including the view redirect.
+                response.setViewRedirect("selectDates");
+                response.add("heading","Pickup & Drop off dates for "+car.getBrand()+" "+car.getModel()+" ("+car.getID()+")");
+                response.add("type","pick-up");
+                response.add("car",car);
+
+                //set the active controller
+                this.app.setActiveController("ReservationController");
+
             }else{
                 //Else we set a response for an invalid selection.
                 response.setError("invalid menu selection '"+request.getUserInputAsInteger()+"', please enter a valid selection\nFrom 1-"+request.get("options"));

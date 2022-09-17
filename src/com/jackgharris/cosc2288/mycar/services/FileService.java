@@ -63,7 +63,7 @@ public class FileService {
 
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            output = new ArrayList<>();
         }
 
         return output;

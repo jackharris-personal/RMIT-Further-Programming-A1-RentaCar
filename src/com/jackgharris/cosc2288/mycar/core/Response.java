@@ -4,21 +4,13 @@ import java.util.HashMap;
 
 public class Response {
 
-    private String error;
-    private String notification;
     private final HashMap<String, Object> data;
 
-    private String redirect;
-
     public Response(){
-        this.error = "";
-        this.notification = "";
-        this.data = new HashMap<String, Object>();
+        this.data = new HashMap<>();
     }
 
     public Response(Request request){
-        this.error = "";
-        this.notification = "";
         this.data = request.getData();
     }
 
@@ -30,53 +22,52 @@ public class Response {
         return this.data.get(key);
     }
 
-    public boolean isset(String key){
+    public boolean containsKey(String key){
         return this.data.containsKey(key);
     }
 
     public void setError(String error){
-        this.error = error;
-    }
-
-    public void setNotification(String notification, String color){
-        this.notification = color+notification+Ascii.black;
-    }
-
-    public String getNotification(){
-        return this.notification+"\n";
-    }
-
-    public boolean containsNotification(){
-        return !this.notification.equals("");
+        this.data.put("error", error);
     }
 
     public boolean containsError(){
-        return !this.error.equals("");
+        return this.data.containsKey("error");
     }
 
     public String getError(){
-        return Ascii.red+this.error+Ascii.black;
+        return Ascii.red+this.data.get("error")+Ascii.black;
     }
 
+    public void setNotification(String notification){
+        this.data.put("notification",notification);
+    }
+
+    public String getNotification(){
+        return Ascii.green+this.data.get("notification")+Ascii.black;
+    }
+
+    public boolean containsNotification(){
+        return this.data.containsKey("notification");
+    }
+
+
+
     public void setViewRedirect(String redirect){
-        this.redirect = redirect;
+        this.data.put("redirect", redirect);
     }
 
 
     public String getViewRedirect(){
-        return this.redirect;
+        return (String) this.data.get("redirect");
     }
 
 
     public boolean shouldRedirect(){
-
-        return this.redirect != null;
+        return this.data.containsKey("redirect");
     }
 
-    public Request cloneDataToRequest(Request request){
-        this.data.forEach(request::add);
-
-        return request;
+    public HashMap<String, Object> getData(){
+        return this.data;
     }
 
 }

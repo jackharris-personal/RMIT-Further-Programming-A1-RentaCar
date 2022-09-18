@@ -83,6 +83,9 @@ public class ReservationController extends Controller {
                 return response;
             }
 
+            response.getData().remove("error");
+
+
             if(!request.containsData("reservation")){
 
                 Reservation reservation = new Reservation();

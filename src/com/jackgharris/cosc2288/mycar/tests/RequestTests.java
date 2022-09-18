@@ -3,9 +3,7 @@ package com.jackgharris.cosc2288.mycar.tests;
 import com.jackgharris.cosc2288.mycar.core.Request;
 import org.junit.Test;
 
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class RequestTests {
 
@@ -37,7 +35,7 @@ public class RequestTests {
         request.setUserInput("Hello World");
         request.resetUserInput();
 
-        assertEquals("", request.getUserInput());
+        assertNull(request.getUserInput());
     }
 
     @Test

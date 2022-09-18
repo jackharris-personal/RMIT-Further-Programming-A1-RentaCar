@@ -1,6 +1,7 @@
 package com.jackgharris.cosc2288.mycar.tests;
 
 import com.jackgharris.cosc2288.mycar.core.Request;
+import com.jackgharris.cosc2288.mycar.core.Response;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -89,5 +90,35 @@ public class RequestObjectTests {
         request.setUserInput("18/09/2022");
         assertTrue(request.isDate());
     }
+
+    @Test
+    public void requestCreateWithResponse(){
+        Response response = new Response();
+        response.add("test",10);
+        response.setError("this is an error");
+
+        Request request = new Request(response);
+
+        assertEquals(10,request.get("test"));
+    }
+
+    @Test
+    public void requestCreateWithResponseExcludeRedirect(){
+        Response response = new Response();
+        response.setViewRedirect("test");
+        Request request = new Request(response);
+
+        assertFalse(request.containsData("redirect"));
+    }
+
+    @Test
+    public void requestCreateWithResponseExcludeInput(){
+        Response response = new Response();
+        response.add("input","this is my user input");
+        Request request = new Request(response);
+
+        assertFalse(request.containsUserInput());
+    }
+
 
 }

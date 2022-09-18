@@ -37,4 +37,12 @@ public abstract class Controller {
     //the request input to determine what view must be called next and what data
     //EXAMPLE: determines what models will be loaded and sent to the view to be displayed.
     public abstract void handleRequest(Request request);
+
+    //**** SET CURRENT VIEW METHOD ****\\
+    //This method sets the current view for the controller and accepts a string as an
+    //input. The input string should match a view, else the updateView method will
+    //throw an error.
+    public void setCurrentView(String view){
+        this.currentView = view;
+    }
 }

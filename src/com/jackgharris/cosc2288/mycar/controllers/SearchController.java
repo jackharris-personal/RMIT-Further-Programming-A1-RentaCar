@@ -64,16 +64,7 @@ public class SearchController extends Controller {
         //Declare our new request object
         Request request;
 
-        //Check if the response is calling for a redirect, if so set the current view to the redirect view
-        //then recall the this.app.handleRequest method and ensure all the response data to cloned into a new
-        //request.
-        if(response.shouldRedirect()){
-            this.currentView = response.getViewRedirect();
-            this.app.handleRequest(new Request(response));
-        }
-
-        //Else if we do not need to redirect we can load our view. All views return a request and accept a
-        //response as an input.
+        //All views return a request and accept a response as an input and will return the request object.
         switch (this.currentView) {
 
             //Brand Selection Menu view

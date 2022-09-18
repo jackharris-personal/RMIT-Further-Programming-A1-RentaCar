@@ -95,15 +95,6 @@ public class MenuController extends Controller {
         //firstly we declare our request local variable
         Request request;
 
-        //next we check if the response from the application contains a redirect call
-        //if so then we set the current view to the redirect and recall the main application
-        //handle request method. Lastly you'll note that we clone our response data to the
-        //request this is to ensure any data passed does not get lost in the redirect.
-        if(response.shouldRedirect()){
-            this.currentView = response.getViewRedirect();
-            this.app.handleRequest(new Request(response));
-        }
-
         //Next we process our view, if the current view is the "menu" view then we set the request to the
         //menu view and pass it the response, else we state that an invalid view was called. As this controller
         //only has one view then we do not need a switch statement and this simply if you will suffice.

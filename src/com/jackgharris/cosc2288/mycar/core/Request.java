@@ -28,6 +28,9 @@ public class Request {
         this.data = new HashMap<>();
     }
 
+    //**** CONSTRUCTOR WITH RESPONSE****\\
+    //This constructor accepts a response as a value and then copies all the data from the response
+    //to the data in this request.
     public Request(Response response) {
         //As the key and data generics were declared above we do not need to redeclare them here.
         this.data = response.getData();

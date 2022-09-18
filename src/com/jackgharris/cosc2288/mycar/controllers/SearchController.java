@@ -123,6 +123,11 @@ public class SearchController extends Controller {
         //Declare the outcome of the search to be null
         boolean searchOutcome = false;
 
+        //early return the response if no user input has been provided.
+        if(!request.containsUserInput()){
+            return response;
+        }
+
         //When selecting a brand you can type the brand or enter the specific number
         //than shown in the view, first lets process the number selection this is one
         //via our request.isInteger boolean method to determine if the input was an integer

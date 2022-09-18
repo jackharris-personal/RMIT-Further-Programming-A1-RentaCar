@@ -72,6 +72,16 @@ public class Application {
     //This method accepts a response object and then calls the update view method on the active
     //controller.
     public void updateView(Response response){
+
+        //next we check if the response from the application contains a redirect call
+        //if so then we set the current view to the redirect and recall the main application
+        //handle request method. Lastly you'll note that we clone our response data to the
+        //request this is to ensure any data passed does not get lost in the redirect.
+        if(response.shouldRedirect()){
+            this.controllers.get(this.activeController).setCurrentView(response.getViewRedirect());
+            this.handleRequest(new Request(response));
+        }
+
         this.controllers.get(this.activeController).updateView(response);
     }
 

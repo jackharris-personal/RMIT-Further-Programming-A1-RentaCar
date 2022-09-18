@@ -28,6 +28,15 @@ public class Request {
         this.data = new HashMap<>();
     }
 
+    public Request(Response response) {
+        //As the key and data generics were declared above we do not need to redeclare them here.
+        this.data = response.getData();
+        //Remove the redirect key if it is present
+        this.data.remove("redirect");
+        //Remove the user input key if present
+        this.data.remove("input");
+    }
+
     //-------------------------  USER INPUT METHODS -------------------------\\
     //
     //All the following methods contain functions used to get, check and reset

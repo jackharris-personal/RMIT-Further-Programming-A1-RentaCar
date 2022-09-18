@@ -7,32 +7,22 @@ import java.util.HashMap;
 
 public class Request {
 
-    private String input;
-    private String error;
     private final HashMap<String, Object> data;
 
-    private boolean containsUserInput;
-
-
-
     public Request() {
-        this.input = "";
-        this.data = new HashMap<String, Object>();
-        this.containsUserInput = false;
+        this.data = new HashMap<>();
     }
 
     public void setUserInput(String input) {
-        this.input = input;
-        this.containsUserInput = true;
+        this.data.put("input", input);
     }
 
     public void resetUserInput(){
-        this.containsUserInput = false;
-        this.input = "";
+        this.data.remove("input");
     }
 
     public String getUserInput() {
-        return this.input;
+        return (String) this.data.get("input");
     }
 
     public void add(String key, Object object){
@@ -48,19 +38,19 @@ public class Request {
     }
 
     public void setError(String error) {
-        this.error = error;
+        this.data.put("error",error);
     }
 
     public String getError() {
-        return this.error;
+        return (String)this.data.get("error");
     }
 
     public int getUserInputAsInteger(){
-        return Integer.parseInt(this.input);
+        return Integer.parseInt((String) this.data.get("input"));
     }
 
     public boolean containsUserInput(){
-        return this.containsUserInput;
+        return this.data.containsKey("input");
     }
 
     public boolean isInteger() {
@@ -68,7 +58,7 @@ public class Request {
         boolean outcome = true;
 
         try {
-            int test = Integer.parseInt(this.input);
+            int test = Integer.parseInt((String) this.data.get("input"));
         }catch (NumberFormatException e){
             outcome = false;
         }

@@ -69,13 +69,8 @@ public class Response {
 
 
     public boolean shouldRedirect(){
-        boolean outcome = false;
 
-        if(this.redirect != null){
-            outcome = true;
-        }
-
-        return outcome;
+        return this.redirect != null;
     }
 
     public Request cloneDataToRequest(Request request){

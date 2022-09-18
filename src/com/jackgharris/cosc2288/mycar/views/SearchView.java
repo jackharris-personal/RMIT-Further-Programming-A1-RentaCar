@@ -15,7 +15,7 @@ public class SearchView extends View {
 
         int counter = 1;
 
-        if (response.isset("carBrands")) {
+        if (response.containsKey("carBrands")) {
             for (String brand : (String[]) response.get("carBrands")) {
                 System.out.println("    "+counter+") "+brand);
                 counter ++;
@@ -42,7 +42,7 @@ public class SearchView extends View {
 
         int counter = 1;
 
-        if (response.isset("carTypes")) {
+        if (response.containsKey("carTypes")) {
             for (String type : (String[])response.get("carTypes")) {
                 System.out.println("    "+counter+") "+type);
                 counter ++;
@@ -61,7 +61,7 @@ public class SearchView extends View {
     }
 
     public Request showCars(Response response){
-        Request request = new Request();
+        Request request = new Request(response);
 
         System.out.println("------------------------------------------------------------------");
         System.out.println("> Select from matching list | "+response.get("heading"));
@@ -72,7 +72,7 @@ public class SearchView extends View {
         }
         int counter = 1;
 
-        if (response.isset("cars")) {
+        if (response.containsKey("cars")) {
             for (Car car : (Car[])response.get("cars")) {
                 System.out.println("    "+counter+") "+car.getID()+" "+car.getBrand()+" "+car.getModel()+" with "+car.getSeatCount()+" seats");
                 counter ++;
@@ -86,9 +86,6 @@ public class SearchView extends View {
             System.out.println(response.getError());
         }
 
-
-
-        request = response.cloneDataToRequest(request);
 
         return this.getUserInput(request);
     }

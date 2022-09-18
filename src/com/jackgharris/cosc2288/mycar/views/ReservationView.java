@@ -10,7 +10,7 @@ public class ReservationView extends View {
 
     public Request selectDates(Response response){
 
-        Request request = new Request();
+        Request request = new Request(response);
 
         System.out.println("------------------------------------------------------------------");
         System.out.println("> "+response.get("heading"));
@@ -24,13 +24,11 @@ public class ReservationView extends View {
             System.out.println(response.getError());
         }
 
-        request = response.cloneDataToRequest(request);
-
         return this.getUserInput(request);
     }
 
     public Request showVehicleDetails(Response response){
-        Request request = new Request();
+        Request request = new Request(response);
 
         System.out.println("------------------------------------------------------------------");
         System.out.println("> show vehicle details");
@@ -59,8 +57,6 @@ public class ReservationView extends View {
         if(response.containsError()){
             System.out.println(response.getError());
         }
-
-        request = response.cloneDataToRequest(request);
 
         return this.getUserInput(request);
     }

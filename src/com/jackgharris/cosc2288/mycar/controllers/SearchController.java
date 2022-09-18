@@ -69,7 +69,7 @@ public class SearchController extends Controller {
         //request.
         if(response.shouldRedirect()){
             this.currentView = response.getViewRedirect();
-            this.app.handleRequest(response.cloneDataToRequest(new Request()));
+            this.app.handleRequest(new Request(response));
         }
 
         //Else if we do not need to redirect we can load our view. All views return a request and accept a

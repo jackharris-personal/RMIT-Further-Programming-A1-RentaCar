@@ -45,7 +45,7 @@ public class ReservationController extends Controller {
         //request.
         if(response.shouldRedirect()){
             this.currentView = response.getViewRedirect();
-            this.app.handleRequest(response.cloneDataToRequest(new Request()));
+            this.app.handleRequest(new Request(response));
         }
 
         //Else if we do not need to redirect we can load our view. All views return a request and accept a
@@ -86,7 +86,7 @@ public class ReservationController extends Controller {
             if(!request.containsData("reservation")){
 
                 Reservation reservation = new Reservation();
-                response.setNotification("Pick-up date set for '"+request.getUserInput()+"'", Ascii.green);
+                response.setNotification("Pick-up date set for '"+request.getUserInput()+"'");
                 reservation.setPickUpDate(request.getUserInput());
                 reservation.setCar((Car)request.get("car"));
                 response.add("reservation",reservation);
@@ -113,7 +113,7 @@ public class ReservationController extends Controller {
         Response response = new Response(request);
 
         //show notification that dates were set correctly
-        response.setNotification("Pick-up & Drop-off dates set for '"+((Reservation) request.get("reservation")).getPickUpDate()+" - "+((Reservation) request.get("reservation")).getDropOffDate()+"'",Ascii.green);
+        response.setNotification("Pick-up & Drop-off dates set for '"+((Reservation) request.get("reservation")).getPickUpDate()+" - "+((Reservation) request.get("reservation")).getDropOffDate()+"'");
 
         return response;
     }

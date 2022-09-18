@@ -101,7 +101,7 @@ public class MenuController extends Controller {
         //request this is to ensure any data passed does not get lost in the redirect.
         if(response.shouldRedirect()){
             this.currentView = response.getViewRedirect();
-            this.app.handleRequest(response.cloneDataToRequest(new Request()));
+            this.app.handleRequest(new Request(response));
         }
 
         //Next we process our view, if the current view is the "menu" view then we set the request to the

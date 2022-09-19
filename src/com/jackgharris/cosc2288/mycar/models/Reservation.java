@@ -29,6 +29,39 @@ public class Reservation extends Model {
         this.hasDiscount = false;
     }
 
+    public void setUserGivenName(String name){
+        this.data.put("user_given_name",name);
+    }
+
+    public String getUserGivenName(){
+        return this.data.get("user_given_name");
+    }
+
+    public void setUserSurname(String name){
+        this.data.put("user_surname", name);
+    }
+
+    public String getUserSurname(){
+        return this.data.get("user_surname");
+    }
+
+    public void setUserEmail(String email){
+        this.data.put("user_email", email);
+    }
+
+    public String getUserEmail(){
+        return this.data.get("user_email");
+    }
+
+    public void setPassengerCount(int passengerCount){
+        this.data.put("user_passenger_count", String.valueOf(passengerCount));
+    }
+
+    public int getPassengerCount(){
+        return Integer.parseInt(this.data.get("user_passenger_count"));
+    }
+
+
     public void setPickUpDate(String date){
         this.data.put("pickup_date",date);
     }
@@ -126,5 +159,23 @@ public class Reservation extends Model {
         return this.duration;
     }
 
+    public String getDiscountCalculation(){
+        float discount = this.car.getDiscount();
+        float discountPricePerDay = this.car.getRentalPricePerDay() -  ((discount /100) *this.car.getRentalPricePerDay());
+        return "($"+discountPricePerDay+" * "+this.duration+" days )";
+    }
+
+    public String getInsuranceCalculation(){
+        return "($"+this.car.getInsurancePerDay()+" * "+this.duration+" days )";
+    }
+
+    public String getStandardCalculation(){
+        return "($"+this.car.getRentalPricePerDay()+" * "+this.duration+" days )";
+    }
+
+
+    public boolean hasDiscount(){
+        return this.car.getDiscount() != 0;
+    }
 
 }

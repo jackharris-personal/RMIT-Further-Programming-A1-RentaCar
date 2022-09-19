@@ -137,6 +137,32 @@ public class Request {
         return validDate;
     }
 
+    //**** IS EMAIL METHOD ****\\
+    //This method will return true or false depending on if the input provided by the user
+    //matches that regex pattern required by a valid email. Credit to Baeldurg.com for the
+    //regex pattern.
+    //
+    //-------------------------  Code Bibliography Reference -------------------------
+    //
+    //Email Validation in Java. baeldung. (2022). Retrieved 19 September 2022,
+    // from https://www.baeldung.com/java-email-validation-regex.
+    //
+    //--------------------------------------------------------------------------------
+
+    public boolean isEmail(){
+
+        //START REFERENCED CODE BLOCK
+        return this.getUserInput().matches("^(.+)@(\\S+)$");
+        //END REFERENCED CODE BLOCK
+    }
+
+    //**** IS STRING METHOD ****\\
+    //This method will return true or false depending on if the input is a string only, this
+    //means that it cannot be only an integer or a date and must be a greater length than 2.
+    public boolean isString(){
+        return !this.isEmail() & !this.isDate() & !this.isInteger();
+    }
+
     //-------------------------  REQUEST ERROR METHODS -------------------------\\
     //
     //These two methods are only used by the view to set a user input error if the

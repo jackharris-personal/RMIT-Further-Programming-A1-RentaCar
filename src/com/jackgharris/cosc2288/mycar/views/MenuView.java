@@ -13,6 +13,9 @@ public class MenuView extends View {
         System.out.println("------------------------------------------------------------------");
         System.out.println("> Select from main menu");
         System.out.println("------------------------------------------------------------------");
+        if(response.containsNotification()){
+            System.out.println(response.getNotification()+"\n");
+        }
         System.out.println("    1) Search by brand");
         System.out.println("    2) Browse by vehicle type");
         System.out.println("    3) Filter by number of passengers");

@@ -6,7 +6,7 @@ MyCar loads its data from the fleet.csv, this can have as many or a few car enti
 ***
 
 ## Getting, Searching and Sorting Car Models
-To one and reference our model data effectily the 'fleet.csv' file is loaded into a static array of cars, this can then be refereced by any caller that wants via our
+To load and reference our model data effectily the 'fleet.csv' file is loaded into a static array of cars, this can then be refereced by any caller that wants via our
 static getters methods. To complement this apporch i have created a custom collection style class that is chainable and familer to anyone who has used any SQL. This
 'CarCollection' object will be returned from all static 'Car' getter facade calls.
 

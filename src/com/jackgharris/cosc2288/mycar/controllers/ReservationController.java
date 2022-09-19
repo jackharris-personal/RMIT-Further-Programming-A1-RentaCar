@@ -245,9 +245,6 @@ public class ReservationController extends Controller {
     private Response confirmation(Request request){
         Response response = new Response(request);
 
-        //response.setNotification("A receipt has been sent to your email.\nWe will soon be in touch before your  pick-up date.");
-
-
         if(request.containsUserInput()){
             if(request.isInteger()){
                 if(request.getUserInputAsInteger() == 2){

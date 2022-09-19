@@ -33,9 +33,10 @@ public class MenuController extends Controller {
         //Declare our new response object that this request will return.
         Response response = new Response();
 
+
         //Firstly we check if the input is not an integer, in this menu only
         //integers are valid input, so we can error here if It's anything else.
-        if(!request.isInteger()){
+        if(!request.isInteger() && request.containsUserInput()){
             response.setError("Invalid input provided '"+request.getUserInput()+"', please provide a valid number");
 
         //else then the input is an integer then we can proceed

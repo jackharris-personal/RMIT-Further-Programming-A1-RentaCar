@@ -11,6 +11,7 @@ public class Main {
     //is to create an instance of the Application.
     public static void main (String[] args){
 
+        //Create our application instance
         new Application();
 
     }

@@ -11,6 +11,14 @@ MyCar loads its data from the fleet.csv, this can have as many or a few car enti
   <a href="#">Requests</a>
 </h3>
 
+<br>
+<p align="center" style="padding-top: 64px"> 
+<img width="612" alt="MyCarCoverImage" align="center" src="https://user-images.githubusercontent.com/79836947/192490153-c494e461-f543-4357-8940-49adb9a106d1.png">
+</p>
+<p align="center">Image displaying the main my car menu.</p>
+
+<br>
+
 ***
 
 ## Getting, Searching and Sorting Car Models

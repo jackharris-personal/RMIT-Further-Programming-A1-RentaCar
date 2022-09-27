@@ -89,7 +89,7 @@ public class Application {
     //This method is called when the program needs to close, this can be called from any
     //controller via thia.app.exit()
     public void exit(){
-        System.out.println("Thankyou for using MyCar Console");
+        System.out.println("Thank-you for using MyCar Console");
         System.out.println("MyCar is now saving & closing");
         System.exit(0);
     }

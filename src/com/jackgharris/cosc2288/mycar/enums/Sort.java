@@ -11,8 +11,13 @@ package com.jackgharris.cosc2288.mycar.enums;
 //inside our new getWhereSeats helper facade method to determine if we want seats
 //greater or less than the integer provided.
 public enum Sort {
+
+    //Sort by descending
     DESCENDING,
+    //Sort by Ascending
     ASCENDING,
+    //Sort by greater than
     GREATER_THAN,
+    //sort by less than
     LESS_THAN
 }

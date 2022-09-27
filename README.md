@@ -1,12 +1,20 @@
-# RMIT-Further-Programming-A1 | MyCar
+# <center> RMIT-Further-Programming-A1 | MyCar </center>
 MyCar is a console based java booking program that allows users to search for and then book cars! This program impliments the core Java OOP standards and impliments the
 very popular Model-View-Controller design pattern to split code and logic into its three easy to maintian respective catoeries or 'data', 'user interface', and 'logic'.
 MyCar loads its data from the fleet.csv, this can have as many or a few car entires as we like, the program will adapt and accept 1 car or 100 cars.
 
+<h3 align="center">
+  <b>Documentation:</b><br><br>
+  <a href="https://github.com/s3893749/RMIT-Further-Programming-A1/blob/master/docs/views.md">Views</a> |
+  <a href="#">Controllers</a> |
+  <a href="#">Responses</a> |
+  <a href="#">Requests</a>
+</h3>
+
 ***
 
 ## Getting, Searching and Sorting Car Models
-To load and reference our model data effectily the 'fleet.csv' file is loaded into a static array of cars, this can then be refereced by any caller that wants via our
+To load and reference our model data effectively the 'fleet.csv' file is loaded into a static array of cars, this can then be refereced by any caller that wants via our
 static getters methods. To complement this apporch i have created a custom collection style class that is chainable and familer to anyone who has used any SQL. This
 'CarCollection' object will be returned from all static 'Car' getter facade calls.
 

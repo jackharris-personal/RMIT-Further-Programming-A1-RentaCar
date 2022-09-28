@@ -90,6 +90,13 @@ public class ReservationController extends Controller {
                 return response;
             }
 
+            //Check if the date is upcoming, else throw the error to the user
+            if(!request.dateIsUpcomingOnly()){
+                response.setError("Invalid date provided, dates must not be in the past");
+                //return the response to prevent further processing
+                return response;
+            }
+
             //if we reach this step then remove any stray errors that may remain in the request.
             response.getData().remove("error");
 

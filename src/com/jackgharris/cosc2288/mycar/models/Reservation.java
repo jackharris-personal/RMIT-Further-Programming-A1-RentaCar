@@ -222,7 +222,7 @@ public class Reservation extends Model {
     public boolean validateDateRange(){
 
         //create our simple date format and set the format to day/month/year
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
 
         //set the outcome to true, if we fail the try catch we will set this to false
         boolean outcome = true;
@@ -236,7 +236,10 @@ public class Reservation extends Model {
             long timeDiff = Math.abs(dropOff.getTime() -  pickUp.getTime());
 
             //set the duration to the days between the two dates
-            this.duration = (int) TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS) +1;
+            //this.duration = (int) TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
+
+            //duration test code
+            this.duration = (int) ((dropOff.getTime() - pickUp.getTime()) / (1000 * 60 * 60 * 24)) +1;
 
             //check if the duration  is less than 0, if so then set the error to tell the user the drop-off date
             //cannot be before the pickup date.

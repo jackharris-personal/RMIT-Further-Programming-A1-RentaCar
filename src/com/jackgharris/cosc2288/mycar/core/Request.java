@@ -6,7 +6,11 @@ package com.jackgharris.cosc2288.mycar.core;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 //**** START CLASS FILE ****\\
 public class Request {
@@ -135,6 +139,42 @@ public class Request {
 
         //return the outcome.
         return validDate;
+    }
+
+    //**** DATE IS UPCOMING ONLY METHOD ****\\
+    //This helper method will check to ensure the date is upcoming and not in the past
+    public boolean dateIsUpcomingOnly(){
+        //create our simple date format and set the format to day/month/year
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+
+        //set the outcome to true, if we fail the try catch we will set this to false
+        boolean outcome = true;
+
+        //return false if the input is not a date
+        if(!this.isDate()){
+            return false;
+        }
+
+        //start the try catch loop
+        try{
+            Date pickUp = simpleDateFormat.parse(this.getUserInput());
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDateTime now = LocalDateTime.now();
+            Date today = simpleDateFormat.parse(dtf.format(now));
+
+            //check if the pickup date is in the past
+            if(pickUp.compareTo(today) < 0){
+                //set the outcome to false.
+                outcome = false;
+            }
+
+        } catch (ParseException e) {
+            System.out.println(Ascii.red+"FATAL RESERVATION MODEL ERROR: Invalid Date Parsed"+Ascii.black);
+        }
+
+        return outcome;
+
     }
 
     //**** IS EMAIL METHOD ****\\

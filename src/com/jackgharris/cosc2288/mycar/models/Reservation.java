@@ -138,7 +138,7 @@ public class Reservation extends Model {
     //**** HAS DISCOUNT ****\\
     //Returns true or false depending on if the car has a discount that is greater than 0
     public boolean hasDiscount(){
-        return this.car.getDiscount() != 0;
+        return this.car.getDiscount() != 0 && this.duration >= 7;
     }
 
     //**** GET DATE RANGE ERROR ****\\
@@ -234,7 +234,7 @@ public class Reservation extends Model {
             long timeDiff = Math.abs(dropOff.getTime() -  pickUp.getTime());
 
             //set the duration to the days between the two dates
-            this.duration = (int) TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
+            this.duration = (int) TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS)  +2;
 
             //check if the duration  is less than 0, if so then set the error to tell the user the drop-off date
             //cannot be before the pickup date.

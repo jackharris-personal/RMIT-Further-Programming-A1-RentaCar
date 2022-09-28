@@ -7,6 +7,8 @@ import com.jackgharris.cosc2288.mycar.core.Ascii;
 import com.jackgharris.cosc2288.mycar.core.Model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -234,7 +236,7 @@ public class Reservation extends Model {
             long timeDiff = Math.abs(dropOff.getTime() -  pickUp.getTime());
 
             //set the duration to the days between the two dates
-            this.duration = (int) TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS)  +2;
+            this.duration = (int) TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS) +1;
 
             //check if the duration  is less than 0, if so then set the error to tell the user the drop-off date
             //cannot be before the pickup date.
@@ -257,12 +259,13 @@ public class Reservation extends Model {
         } catch (ParseException e) {
             //We should not catch an error here, if we do then print a reservation model error, all dates should be validated
             //prior to this step, this could be considered a fatal error.
-            System.out.println(Ascii.red+"RESERVATION MODEL ERROR: Invalid Date Parsed"+Ascii.black);
+            System.out.println(Ascii.red+"FATAL RESERVATION MODEL ERROR: Invalid Date Parsed"+Ascii.black);
         }
 
         //return the outcome.
         return outcome;
     }
+
 
     //**** GET DISCOUNT CALCULATION ****\\
     //returns the discount calculation as a string

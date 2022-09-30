@@ -8,9 +8,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class CarModelTests {
+public class CarModelAndCollectionTests {
 
-    public CarModelTests(){
+    public CarModelAndCollectionTests(){
         //Bind all our model data that will be required for testing
         Car.bindModelData(FileService.loadCarModels(System.getProperty("user.dir")+"/fleet.csv"));
     }

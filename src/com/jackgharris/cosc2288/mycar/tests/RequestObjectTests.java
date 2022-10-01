@@ -121,4 +121,21 @@ public class RequestObjectTests {
     }
 
 
+    @Test
+    public void requestDateIsUpComingWithPastDateShouldBeFalse(){
+        Request request = new Request();
+        request.setUserInput("01/09/2022");
+
+        assertFalse(request.dateIsUpcomingOnly());
+    }
+
+    @Test
+    public void requestDateIsUpComingWith2024DateShouldBeTrue(){
+        Request request = new Request();
+        request.setUserInput("01/09/2024");
+
+        assertTrue(request.dateIsUpcomingOnly());
+    }
+
+
 }

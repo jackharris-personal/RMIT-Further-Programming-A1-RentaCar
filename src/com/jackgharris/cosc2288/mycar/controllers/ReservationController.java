@@ -119,9 +119,10 @@ public class ReservationController extends Controller {
 
                 //else we assume step 1 is complete a process the second step (drop off)
             }else{
-
+                //create our new reservation object.
+                Reservation reservation = (Reservation) request.get("reservation");
                 //get the reservation from the request and set the drop-off date.
-                ((Reservation)request.get("reservation")).setDropOffDate(request.getUserInput());
+                reservation.setDropOffDate(request.getUserInput());
                 //add the reservation back to the response.
                 response.add("reservation",request.get("reservation"));
 

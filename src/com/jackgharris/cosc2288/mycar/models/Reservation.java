@@ -232,6 +232,14 @@ public class Reservation extends Model {
             Date pickUp = simpleDateFormat.parse(this.data.get("pickup_date"));
             Date dropOff = simpleDateFormat.parse(this.data.get("dropoff_date"));
 
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+            LocalDateTime now = LocalDateTime.now();
+            Date today = simpleDateFormat.parse(dtf.format(now));
+
+            //check if the pickup date is in the past
+            //set the outcome to false.
+            outcome = !today.before(pickUp);
+
             //create the time difference between the two dates
             long timeDiff = Math.abs(dropOff.getTime() -  pickUp.getTime());
 
@@ -241,18 +249,19 @@ public class Reservation extends Model {
             //duration test code
             this.duration = (int) ((dropOff.getTime() - pickUp.getTime()) / (1000 * 60 * 60 * 24)) +1;
 
+
             //check if the duration  is less than 0, if so then set the error to tell the user the drop-off date
             //cannot be before the pickup date.
-            if(dropOff.compareTo(pickUp) < 0){
-                //set the error
-                this.dateRangeError = "drop off date cannot be before pickup date";
-                //set the outcome to false.
+            if(this.duration < 0){
+                //set the outcome to false
                 outcome = false;
+                //set the error
+                this.dateRangeError = "drop off date cannot be before the pick up date";
             }
 
             //check if the duration is 0, if so then this indicates that this is the same date and we should return
             //false
-            if(dropOff.compareTo(pickUp) == 0){
+            if(this.duration == 0){
                 //set the outcome to false
                 outcome = false;
                 //set the error

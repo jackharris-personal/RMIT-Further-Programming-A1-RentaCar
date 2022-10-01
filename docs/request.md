@@ -33,6 +33,13 @@ pass it this request as a parameter. This can be bundled into the single return 
 ````java
 return this.getUserInput(request);
 ````
+
+### Getting the user input
+This method can be called to get the user input as a string.
+
+````java
+request.getUserInput();
+````
 ### Getting the user input error
 In the event that the user input is not able to be gotten then the "this.getUserInput()" method will set
 the error variable in the request to the user input error. This can be accessed and checked via the 

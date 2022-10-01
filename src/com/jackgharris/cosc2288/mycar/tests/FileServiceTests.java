@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class FileServiceTest {
+public class FileServiceTests {
 
     @Test
     public void loadCarModelsTestWithInValidPath(){

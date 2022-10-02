@@ -3,14 +3,10 @@ package com.jackgharris.cosc2288.mycar.core;
 
 //**** PACKAGE IMPORTS ****\\
 //List of all packages imported into this class.
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
+import java.util.regex.Pattern;
 
 //**** START CLASS FILE ****\\
 public class Request {
@@ -105,13 +101,13 @@ public class Request {
 
     //**** IS DATE METHOD ****\\
     //This method will return true or false to let the caller know if the user input
-    //was a valid date or not, credit to C Parakash for providing his article on working
+    //was a valid date or not, credit to Sweeper for providing his article on working
     //out how to test for a valid date input.
     //
     //-------------------------  Code Bibliography Reference -------------------------
     //
-    // Prakash, C. (2021). Check If a String Is a Valid Date in Java. baeldung.com.
-    // Retrieved 16 September 2022, from https://www.baeldung.com/java-string-valid-date.
+    //format, i., & Sattar, S. (2022). issue in the dd-MM-yyyy format. Stack Overflow.
+    //Retrieved 2 October 2022, from https://stackoverflow.com/questions/44868266/issue-in-the-dd-mm-yyyy-format.
     //
     //--------------------------------------------------------------------------------
 
@@ -121,17 +117,9 @@ public class Request {
         boolean validDate = true;
 
         //START REFERENCED CODE BLOCK
-        //create our new date format and passé it the date formatting we want as a string.
-        DateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        //set the setLenient to false.
-        simpleDateFormat.setLenient(false);
 
-        try{
-            //try to parse the date provided by the user into this format.
-            simpleDateFormat.parse(this.getUserInput());
-        } catch (ParseException e) {
-
-            //if we catch an exception then set our outcome to false
+        Pattern p =  Pattern.compile("\\d{2}-\\d{2}-\\d{4}");
+        if (!p.matcher(this.getUserInput()).matches()) {
             validDate = false;
         }
 
@@ -144,37 +132,19 @@ public class Request {
     //**** DATE IS UPCOMING ONLY METHOD ****\\
     //This helper method will check to ensure the date is upcoming and not in the past
     public boolean dateIsUpcomingOnly(){
-        //create our simple date format and set the format to day/month/year
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-
-        //set the outcome to true, if we fail the try catch we will set this to false
-        boolean outcome = true;
 
         //return false if the input is not a date
         if(!this.isDate()){
             return false;
         }
 
-        //start the try catch loop
-        try{
-            Date pickUp = simpleDateFormat.parse(this.getUserInput());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDateTime now = LocalDateTime.now();
-            Date today = simpleDateFormat.parse(dtf.format(now));
+        //try to parse the pickup and drop off date
+        LocalDate date = LocalDate.parse(this.getUserInput(),formatter);
+        LocalDate today = LocalDate.now();
 
-            //check if the pickup date is in the past
-            if(pickUp.compareTo(today) < 0){
-                //set the outcome to false.
-                outcome = false;
-            }
-
-        } catch (ParseException e) {
-            System.out.println(Ascii.red+"FATAL RESERVATION MODEL ERROR: Invalid Date Parsed"+Ascii.black);
-        }
-
-        return outcome;
-
+        return today.isBefore(date);
     }
 
     //**** IS EMAIL METHOD ****\\

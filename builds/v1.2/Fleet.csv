@@ -1,0 +1,10 @@
+Vehicle ID,Brand,Model,Type,Year of Manufacture,No. of seats,Color,Rental per day (AUD),Insurance per day (AUD),Service fee (AUD),Discount
+C001,Toyota,Yaris,Sedan,2012,4,Blue,50,15,10,10
+C002,Toyota,Corolla,Hatch,2020,4,White,45,20,10,10
+C003,Toyota,Kluger,SUV,2019,7,Grey,70,20,20,10
+C004,Audi,A3,Sedan,2015,5,Red,65,10,20,10
+C005,Holden,Cruze,Hatch,2020,4,Green,70,10,10,10
+C006,BMW,X5,SUV,2018,7,White,100,25,20,10
+C007,BMW,320i,Sedan,2021,5,Grey,75,10,15,N/A
+C008,Ford,Focus,Sedan,2014,5,Red,45,10,10,N/A
+C009,Ford,Puma,SUV,2015,5,Black,70,20,15,20

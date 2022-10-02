@@ -73,6 +73,10 @@ public class Application {
     //controller.
     public void updateView(Response response){
 
+        //clear the screen of any remaining old input
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
         //next we check if the response from the application contains a redirect call
         //if so then we set the current view to the redirect and recall the main application
         //handle request method. Lastly you'll note that we clone our response data to the

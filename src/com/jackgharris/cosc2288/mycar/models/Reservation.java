@@ -3,16 +3,12 @@ package com.jackgharris.cosc2288.mycar.models;
 
 //**** PACKAGE IMPORTS ****\\
 //Packages and class files this class is using.
-import com.jackgharris.cosc2288.mycar.core.Ascii;
+
 import com.jackgharris.cosc2288.mycar.core.Model;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 //**** START CLASS FILE ****\\
 //This Reservation extends the parent "Model" class
@@ -225,63 +221,31 @@ public class Reservation extends Model {
     //return true or false depending on if a valida date range is set or not.
     public boolean validateDateRange(){
 
-        //create our simple date format and set the format to day/month/year
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
-
         //set the outcome to true, if we fail the try catch we will set this to false
         boolean outcome = true;
 
-        try{
-            //try to parse the pickup and drop off date
-            Date pickUp = simpleDateFormat.parse(this.data.get("pickup_date"));
-            Date dropOff = simpleDateFormat.parse(this.data.get("dropoff_date"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/mm/yyyy");
-            LocalDateTime now = LocalDateTime.now();
-            Date today = simpleDateFormat.parse(dtf.format(now));
+        //try to parse the pickup and drop off date
+        LocalDate pickUp = LocalDate.parse(this.data.get("pickup_date"),formatter);
+        LocalDate dropOff = LocalDate.parse(this.data.get("dropoff_date"),formatter);
 
-            //check if the pickup date is in the past
-            //set the outcome to false.
-            outcome = !today.before(pickUp);
+        long duration = ChronoUnit.DAYS.between(pickUp,dropOff);
 
-            //create the time difference between the two dates
-            long timeDiff = Math.abs(dropOff.getTime() -  pickUp.getTime());
+        this.duration = (int) (duration+1);
 
-            //set the duration to the days between the two dates
-            //this.duration = (int) TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-
-            //duration test code
-            this.duration = (int) ((dropOff.getTime() - pickUp.getTime()) / (1000 * 60 * 60 * 24)) +1;
-
-
-            //check if the duration  is less than 0, if so then set the error to tell the user the drop-off date
-            //cannot be before the pickup date.
-            if(this.duration < 0){
-                //set the outcome to false
-                outcome = false;
-                //set the error
-                this.dateRangeError = "drop off date cannot be before the pick up date";
-            }
-
-            //check if the duration is 0, if so then this indicates that this is the same date and we should return
-            //false
-            if(this.duration == 0){
-                //set the outcome to false
-                outcome = false;
-                //set the error
-                this.dateRangeError = "drop off and pickup date cannot be the same date";
-            }
-
-        } catch (ParseException e) {
-            //We should not catch an error here, if we do then print a reservation model error, all dates should be validated
-            //prior to this step, this could be considered a fatal error.
-            System.out.println(Ascii.red+"FATAL RESERVATION MODEL ERROR: Invalid Date Parsed"+Ascii.black);
+        //check if the duration  is less than 0, if so then set the error to tell the user the drop-off date
+        //cannot be before the pickup date.
+        if(this.duration < 0){
+            //set the outcome to false
+            outcome = false;
+            //set the error
+            this.dateRangeError = "drop off date cannot be before the pick up date";
         }
 
         //return the outcome.
         return outcome;
     }
-
 
     //**** GET DISCOUNT CALCULATION ****\\
     //returns the discount calculation as a string

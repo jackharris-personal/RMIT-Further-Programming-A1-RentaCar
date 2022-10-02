@@ -66,18 +66,18 @@ public class ReservationModelTests {
     @Test
     public void reservationValidateDateRangeWithDropOffBeforePickup(){
         Reservation reservation = new Reservation();
-        reservation.setPickUpDate("10/12/2022");
-        reservation.setDropOffDate("05/12/2022");
+        reservation.setPickUpDate("10-12-2022");
+        reservation.setDropOffDate("05-12-2022");
         assertFalse(reservation.validateDateRange());
     }
 
     @Test
     public void reservationValidateDateRangeWithPickUpAndDropOffOnSameDay(){
         Reservation reservation = new Reservation();
-        reservation.setPickUpDate("23/12/2023");
-        reservation.setDropOffDate("23/12/2023");
+        reservation.setPickUpDate("23-12-2023");
+        reservation.setDropOffDate("23-12-2023");
 
-        assertFalse(reservation.validateDateRange());
+        assertTrue(reservation.validateDateRange());
     }
 
     @Test
@@ -88,8 +88,8 @@ public class ReservationModelTests {
         Car yaris = Car.where("Vehicle ID","C001").getFirst();
 
         reservation.setCar(yaris);
-        reservation.setPickUpDate("10/12/2022");
-        reservation.setDropOffDate("25/12/2022");
+        reservation.setPickUpDate("10-12-2022");
+        reservation.setDropOffDate("25-12-2022");
         reservation.validateDateRange();
 
         assertTrue(reservation.hasDiscount());
@@ -99,8 +99,8 @@ public class ReservationModelTests {
     public void reservationGetDurationForSixteenDays(){
         Reservation reservation = new Reservation();
 
-        reservation.setPickUpDate("10/12/2023");
-        reservation.setDropOffDate("25/12/2023");
+        reservation.setPickUpDate("10-12-2023");
+        reservation.setDropOffDate("25-12-2023");
 
         reservation.validateDateRange();
         assertEquals(reservation.getDuration(),16);
@@ -110,22 +110,22 @@ public class ReservationModelTests {
     public void reservationGetDurationForTwoDays(){
         Reservation reservation = new Reservation();
 
-        reservation.setPickUpDate("10/12/2023");
-        reservation.setDropOffDate("11/12/2023");
+        reservation.setPickUpDate("02-10-2022");
+        reservation.setDropOffDate("03-10-2022");
 
         reservation.validateDateRange();
-        assertEquals(reservation.getDuration(),2);
+        assertEquals(2,reservation.getDuration());
     }
 
     @Test
     public void reservationGetRentalCostForEightDays(){
         Reservation reservation = new Reservation();
 
-        reservation.setPickUpDate("10/12/2023");
-        reservation.setDropOffDate("17/12/2023");
+        reservation.setPickUpDate("10-12-2023");
+        reservation.setDropOffDate("17-12-2023");
 
         reservation.validateDateRange();
-        assertEquals(reservation.getDuration(),8);
+        assertEquals(8,reservation.getDuration());
     }
 
     @Test
@@ -136,8 +136,8 @@ public class ReservationModelTests {
         Car yaris = Car.where("Vehicle ID","C001").getFirst();
 
         reservation.setCar(yaris);
-        reservation.setPickUpDate("01/12/2023");
-        reservation.setDropOffDate("07/12/2023");
+        reservation.setPickUpDate("01-12-2023");
+        reservation.setDropOffDate("07-12-2023");
         reservation.validateDateRange();
 
         assertEquals(315,reservation.getDiscountPrice());
@@ -151,8 +151,8 @@ public class ReservationModelTests {
         Car yaris = Car.where("Vehicle ID","C001").getFirst();
 
         reservation.setCar(yaris);
-        reservation.setPickUpDate("01/12/2023");
-        reservation.setDropOffDate("06/12/2023");
+        reservation.setPickUpDate("01-12-2023");
+        reservation.setDropOffDate("06-12-2023");
         reservation.validateDateRange();
 
         assertEquals(300,reservation.getRentalCost());
@@ -166,8 +166,8 @@ public class ReservationModelTests {
         Car yaris = Car.where("Vehicle ID","C001").getFirst();
 
         reservation.setCar(yaris);
-        reservation.setPickUpDate("01/12/2023");
-        reservation.setDropOffDate("06/12/2023");
+        reservation.setPickUpDate("01-12-2023");
+        reservation.setDropOffDate("06-12-2023");
         reservation.validateDateRange();
 
         assertEquals(90,reservation.getInsuranceCost());
@@ -181,8 +181,8 @@ public class ReservationModelTests {
         Car yaris = Car.where("Vehicle ID","C001").getFirst();
 
         reservation.setCar(yaris);
-        reservation.setPickUpDate("01/12/2023");
-        reservation.setDropOffDate("06/12/2023");
+        reservation.setPickUpDate("01-12-2023");
+        reservation.setDropOffDate("06-12-2023");
         reservation.validateDateRange();
 
         assertEquals(10,reservation.getServiceFee());
@@ -196,8 +196,8 @@ public class ReservationModelTests {
         Car yaris = Car.where("Vehicle ID","C001").getFirst();
 
         reservation.setCar(yaris);
-        reservation.setPickUpDate("01/12/2023");
-        reservation.setDropOffDate("07/12/2023");
+        reservation.setPickUpDate("01-12-2023");
+        reservation.setDropOffDate("07-12-2023");
         reservation.validateDateRange();
         reservation.getDiscountPrice();
 
@@ -212,8 +212,8 @@ public class ReservationModelTests {
         Car yaris = Car.where("Vehicle ID","C001").getFirst();
 
         reservation.setCar(yaris);
-        reservation.setPickUpDate("01/12/2023");
-        reservation.setDropOffDate("06/12/2023");
+        reservation.setPickUpDate("01-12-2023");
+        reservation.setDropOffDate("06-12-2023");
         reservation.validateDateRange();
 
         assertEquals(300+90+10,reservation.getTotalCost());
@@ -227,8 +227,8 @@ public class ReservationModelTests {
         Car yaris = Car.where("Vehicle ID","C001").getFirst();
 
         reservation.setCar(yaris);
-        reservation.setPickUpDate("01/12/2023");
-        reservation.setDropOffDate("07/12/2023");
+        reservation.setPickUpDate("01-12-2023");
+        reservation.setDropOffDate("07-12-2023");
         reservation.validateDateRange();
         reservation.getDiscountPrice();
 
@@ -244,8 +244,8 @@ public class ReservationModelTests {
         Car yaris = Car.where("Vehicle ID","C001").getFirst();
 
         reservation.setCar(yaris);
-        reservation.setPickUpDate("01/12/2023");
-        reservation.setDropOffDate("07/12/2023");
+        reservation.setPickUpDate("01-12-2023");
+        reservation.setDropOffDate("07-12-2023");
         reservation.validateDateRange();
         reservation.getDiscountPrice();
 
@@ -260,8 +260,8 @@ public class ReservationModelTests {
         Car yaris = Car.where("Vehicle ID","C001").getFirst();
 
         reservation.setCar(yaris);
-        reservation.setPickUpDate("01/12/2023");
-        reservation.setDropOffDate("02/12/2023");
+        reservation.setPickUpDate("01-12-2023");
+        reservation.setDropOffDate("02-12-2023");
         reservation.validateDateRange();
 
         assertEquals("($50 * 2 days )",reservation.getStandardCalculation());

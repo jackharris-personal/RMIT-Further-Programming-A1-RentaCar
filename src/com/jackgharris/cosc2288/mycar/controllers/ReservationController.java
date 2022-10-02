@@ -85,7 +85,7 @@ public class ReservationController extends Controller {
 
             //check if the input provided is a valid date format, if not then return an error.
             if(!request.isDate()){
-                response.setError("Invalid date provided, dates must be formatted as 'day/month/year'\nExample: '16/09/2022'");
+                response.setError("Invalid date provided, dates must be formatted as 'day-month-year'\nExample: '16-09-2022'");
                 //return the response to prevent further processing
                 return response;
             }
@@ -128,7 +128,7 @@ public class ReservationController extends Controller {
                 response.add("reservation",request.get("reservation"));
 
                 //check if the reservation has a valid date range (positive between dates)
-                if(!reservation.validateDateRange() && reservation.getDateRangeError() != null){
+                if(!reservation.validateDateRange()){
                     //if not then set the error to return to the user
                     response.setError("please select a date greater than '"+((Reservation)response.get("reservation")).getPickUpDate()+"'");
                 }else{

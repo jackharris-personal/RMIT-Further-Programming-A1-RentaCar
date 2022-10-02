@@ -124,16 +124,18 @@ public class ReservationController extends Controller {
                 //get the reservation from the request and set the drop-off date.
                 reservation.setDropOffDate(request.getUserInput());
                 //add the reservation back to the response.
+                //add the reservation back to the response.
                 response.add("reservation",request.get("reservation"));
 
                 //check if the reservation has a valid date range (positive between dates)
-                if(!((Reservation)response.get("reservation")).validateDateRange()){
+                if(!reservation.validateDateRange() && reservation.getDateRangeError() != null){
                     //if not then set the error to return to the user
-                    response.setError(((Reservation)response.get("reservation")).getDateRangeError()+", please select a date greater than '"+((Reservation)response.get("reservation")).getPickUpDate()+"'");
+                    response.setError("please select a date greater than '"+((Reservation)response.get("reservation")).getPickUpDate()+"'");
                 }else{
                     //else set the view to show vehicle details
                     response.setViewRedirect("showVehicleDetails");
                 }
+
             }
 
         }

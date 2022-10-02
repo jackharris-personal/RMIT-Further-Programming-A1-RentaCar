@@ -146,7 +146,11 @@ public class Reservation extends Model {
     //**** GET DATE RANGE ERROR ****\\
     //Returns the date range error to the caller
     public String getDateRangeError(){
-        return this.dateRangeError;
+        //reset the error once called.
+        String error = this.dateRangeError;
+        this.dateRangeError = null;
+
+        return error;
     }
 
     //**** GET DURATION ****\\
@@ -301,6 +305,4 @@ public class Reservation extends Model {
     public String getStandardCalculation(){
         return "($"+this.car.getRentalPricePerDay()+" * "+this.duration+" days )";
     }
-
-
 }

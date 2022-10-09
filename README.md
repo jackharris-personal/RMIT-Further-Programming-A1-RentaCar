@@ -1,5 +1,5 @@
 # <center> RMIT-Further-Programming-A1 | MyCar </center>
-MyCar is a console based java booking program that allows users to search for and then book cars! This program impliments the core Java OOP standards and impliments the
+Rent-A-Car is a console based java booking program that allows users to search for and then book cars! This program impliments the core Java OOP standards and impliments the
 very popular Model-View-Controller design pattern to split code and logic into its three easy to maintian respective catoeries or 'data', 'user interface', and 'logic'.
 MyCar loads its data from the fleet.csv, this can have as many or a few car entires as we like, the program will adapt and accept 1 car or 100 cars.
 

@@ -3,6 +3,8 @@ Rent-A-Car is a console based java booking program that allows users to search f
 very popular Model-View-Controller design pattern to split code and logic into its three easy to maintian respective catoeries or 'data', 'user interface', and 'logic'.
 MyCar loads its data from the fleet.csv, this can have as many or a few car entires as we like, the program will adapt and accept 1 car or 100 cars.
 
+Project switched from private to public as of 9:00pm on the 12th of October after marking is completed. Please refer to the RMIT plagiarism warning at the bottom of this document.
+
 <h3 align="center">
   <b>Documentation:</b><br><br>
   <a href="https://github.com/s3893749/RMIT-Further-Programming-A1/blob/master/docs/views.md">Views</a> |
